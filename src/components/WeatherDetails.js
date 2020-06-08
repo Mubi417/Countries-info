@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const WeatherDetails = ({countryCapital}) => {
   const [apiResponse, setApiResponse] = useState({
-    weatherTemp:0, weatherIcon:null, windSpeed: 0, windDirection: null})
+    weatherTemp:'loading...', weatherIcon:null, windSpeed: 'loading...', windDirection: 'loading...'})
   useEffect (()=>{
     const fetchData = async () => {
       const url = `http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_API_KEY}&query=${countryCapital}`
@@ -17,9 +17,9 @@ const WeatherDetails = ({countryCapital}) => {
         })
       }).catch(e=>{
         setApiResponse({
-          windSpeed: 0,
+          windSpeed: 'loading...',
           weatherIcon:null,
-          weatherTemp: 'unable to connect',
+          weatherTemp: 'loading...',
           windDirection: 'unable to connect'
         })
       })
